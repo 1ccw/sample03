@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 
 // MySQL 데이터베이스 연결 설정
 const db = mysql.createConnection({
