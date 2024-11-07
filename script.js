@@ -99,7 +99,7 @@ function sendDataToServer() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(sensorData)
+        body: JSON.stringify(sensorData), 
         mode: 'cors'
     })
     .then(response => response.json())
