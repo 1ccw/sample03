@@ -25,7 +25,7 @@ const port = 3002;
 app.use(bodyParser.json()); // JSON 형식의 요청 본문을 처리
 
 // 데이터 수신 API
-app.post('/sensor-data', (req, res) => {
+app.post('/api/sensor-data', (req, res) => {
     const data = req.body;
 
     // SQL 쿼리로 데이터 삽입
