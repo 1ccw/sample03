@@ -19,9 +19,13 @@ db.connect((err) => {
 });
 
 // Express 설정
+const cors = require('cors');
 const app = express();
 const port = 3002;
 
+app.use(cors({
+    origin: 'http://1ccw.github.io/sample03'
+}));
 app.use(bodyParser.json()); // JSON 형식의 요청 본문을 처리
 
 // 데이터 수신 API

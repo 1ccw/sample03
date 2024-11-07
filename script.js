@@ -100,6 +100,7 @@ function sendDataToServer() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(sensorData)
+        mode: 'cors'
     })
     .then(response => response.json())
     .then(data => console.log('Data successfully sent to server:', data))
