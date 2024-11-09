@@ -45,7 +45,7 @@ app.post('/api/sensor-data', (req, res) => {
 });
 
 // 서버 시작
-const PORT = process.env.PORT || 3002;
-app.listen(port, () => {
+const port = process.env.port || 3002;
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server running on http://localhost:${port}`);
 });
