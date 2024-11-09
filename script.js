@@ -92,6 +92,12 @@ function handleOrientationEvent(event) {
     sendDataToServer();
 }
 
+if (window.DeviceOrientationEvent) {
+    window.addEventListener("deviceorientation", handleOrientationEvent, true);
+} else {
+    console.log("DeviceOrientationEvent is not supported on this device.");
+}
+
 // 서버로 데이터를 보내는 함수
 function sendDataToServer() {
     fetch('http://localhost:3002/api/sensor-data', { // 서버 엔드포인트 URL로 교체
@@ -102,7 +108,12 @@ function sendDataToServer() {
         body: JSON.stringify(sensorData), 
         mode: 'cors'
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json()
+    })
     .then(data => console.log('Data successfully sent to server:', data))
     .catch(error => console.error('Error sending data to server:', error));
 }
