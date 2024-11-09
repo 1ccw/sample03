@@ -36,7 +36,7 @@ app.post('/api/sensor-data', (req, res) => {
     const query = 'INSERT INTO sensor_data (accelerationX, accelerationY, accelerationZ, alpha, beta, gamma) VALUES (?, ?, ?, ?, ?, ?)';
     const values = [data.accelerationX, data.accelerationY, data.accelerationZ, data.alpha, data.beta, data.gamma];
 
-    db.execute(query, values, (err, results) => {
+    db.query(query, values, (err, results) => {
         if (err) {
             return res.status(500).send({ error: 'Failed to save data' });
         }
@@ -46,6 +46,6 @@ app.post('/api/sensor-data', (req, res) => {
 
 // 서버 시작
 const port = process.env.port || 3002;
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, '0.0.0.0',() => {
     console.log(`Server running on http://localhost:${port}`);
 });
