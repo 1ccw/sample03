@@ -1,6 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+// Express 설정
+const cors = require('cors');
+const app = express();
+
+
+app.use(cors());
+app.use(bodyParser.json()); // JSON 형식의 요청 본문을 처리
+
 
 // MySQL 데이터베이스 연결 설정
 const db = mysql.createConnection({
@@ -18,13 +26,7 @@ db.connect((err) => {
     console.log('Connected to MySQL');
 });
 
-// Express 설정
-const cors = require('cors');
-const app = express();
-const port = 3002;
 
-app.use(cors());
-app.use(bodyParser.json()); // JSON 형식의 요청 본문을 처리
 
 // 데이터 수신 API
 app.post('/api/sensor-data', (req, res) => {
@@ -43,6 +45,7 @@ app.post('/api/sensor-data', (req, res) => {
 });
 
 // 서버 시작
+const PORT = process.env.PORT || 3002;
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
