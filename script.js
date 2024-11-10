@@ -59,6 +59,7 @@ let randomNumber = Math.floor(Math.random() * 500) + 1;
         });
 
 let sensorData = {};
+let sendTimeout;
 
 if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
