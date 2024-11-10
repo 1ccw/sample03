@@ -59,7 +59,7 @@ let randomNumber = Math.floor(Math.random() * 500) + 1;
         });
 
 let sensorData = {};
-let sendTimeout;
+
 
 if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
@@ -81,7 +81,7 @@ function handleMotionEvent(event) {
     sensorData.accelerationZ = event.accelerationIncludingGravity.z;
 
     console.log("Acceleration with gravity:", sensorData.accelerationX, sensorData.accelerationY, sensorData.accelerationZ);
-    scheduleDataSend();
+    sendDataToServer();
 }
 
 function handleOrientationEvent(event) {
@@ -90,7 +90,7 @@ function handleOrientationEvent(event) {
     sensorData.gamma = event.gamma;
 
     console.log("Orientation:", sensorData.alpha, sensorData.beta, sensorData.gamma);
-    scheduleDataSend();
+    sendDataToServer();
 }
 
 if (window.DeviceOrientationEvent) {
@@ -99,13 +99,7 @@ if (window.DeviceOrientationEvent) {
     console.log("DeviceOrientationEvent is not supported on this device.");
 }
 
-function scheduleDataSend() {
-    // 기존 타이머가 있으면 취소
-    if (sendTimeout) clearTimeout(sendTimeout);
 
-    // 1초(1000ms) 뒤에 데이터 전송 예약
-    sendTimeout = setTimeout(sendDataToServer, 1000);
-}
 
 // 서버로 데이터를 보내는 함수
 function sendDataToServer() {
