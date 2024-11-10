@@ -80,7 +80,7 @@ function handleMotionEvent(event) {
     sensorData.accelerationZ = event.accelerationIncludingGravity.z;
 
     console.log("Acceleration with gravity:", sensorData.accelerationX, sensorData.accelerationY, sensorData.accelerationZ);
-    sendTimeout();
+    scheduleDataSend();
 }
 
 function handleOrientationEvent(event) {
@@ -89,7 +89,7 @@ function handleOrientationEvent(event) {
     sensorData.gamma = event.gamma;
 
     console.log("Orientation:", sensorData.alpha, sensorData.beta, sensorData.gamma);
-    sendTimeout();
+    scheduleDataSend();
 }
 
 if (window.DeviceOrientationEvent) {
